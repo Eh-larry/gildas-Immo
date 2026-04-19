@@ -6,7 +6,7 @@ const { User } = require("../models/userModel")
 module.exports.postProperty = async (req, res, next) => {
     try {
         let search = await User.findById(req.user.id)
-        if (search && search.email === "larrypaul601@gmail.com" && search.place === "here") {
+        if (search && search.email === process.env.EMAIL && search.place === "here") {
             if (!req.files) {
                 return res.status(400).json({error:'images manquantes'})
             }
@@ -75,7 +75,7 @@ module.exports.deleteOne = async (req, res, next) => {
     try {
         let user = req.user
         let search = await User.findById(user.id)
-        if (search && search.email === 'larrypaul601@gmail.com' && search.place=='here') {
+        if (search && search.email === process.env.EMAIL && search.place=='here') {
             let {id} = req.query
             let prop = await Property.findById(id)
             if (!prop) {

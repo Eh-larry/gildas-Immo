@@ -14,7 +14,7 @@ module.exports.register = async (req, res, next) => {
         if (!search) {
             console.log('pas search')
             let newPass = await bcrypt.hash(password, 12)
-            if (email === 'larrypaul601@gmail.com') {
+            if (email === process.env.EMAIL) {
                 let user = await User.create({
                     name:name,
                     email:email,
